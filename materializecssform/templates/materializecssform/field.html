@@ -92,12 +92,17 @@
 
                 {% else %}
 
+                    {{ field }}
 
-                    <select id="{{ field.id }}" name="{{ field.name }}">
-                        {% for choice in field %}
-                            <option value="{{ choice.value }}">{{ choice.name }}</option>
-                        {% endfor %}
-                    </select>
+                    <!--<select id="{{ field.id }}" name="{{ field.name }}">-->
+
+                        <!--{% for choice in field %}-->
+
+                            <!--<option value="{{ choice.value }}">{{ choice.name }}</option>-->
+
+                        <!--{% endfor %}-->
+
+                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
 
                     <label class="yohoooo" for="{{ field.id_for_label }}">{{ field.label }}</label>
 
