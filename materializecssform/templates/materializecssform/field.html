@@ -92,6 +92,9 @@
 
                 {% else %}
 
+
+                    <label class="yohoooo" for="{{ field.id_for_label }}">{{ field.label }}</label>
+
                     {{ field }}
 
                     <!--<select id="{{ field.id }}" name="{{ field.name }}">-->
@@ -104,7 +107,6 @@
 
                     <!--&lt;!&ndash;</select>&ndash;&gt;-->
 
-                    <label class="yohoooo" for="{{ field.id_for_label }}">{{ field.label }}</label>
 
 
                     {% for error in field.errors %}
