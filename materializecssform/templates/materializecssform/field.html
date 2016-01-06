@@ -65,18 +65,42 @@
             {% endif %}
     </div>
     {% elif field|is_select %}
-    <div class="col {{ classes.label }}">
-            {% if field|is_checkbox_select_multiple %}
-                {% if field.auto_id %}
-                    <label class="control-label {{ classes.label }} {% if field.field.required %}{{ form.required_css_class }}{% endif %}">{{ field.label }}</label>
-                {% endif %}
-                <div class="{{ classes.value }}">
-                    {% for choice in field %}
-                          <p>
-                            {{ choice.tag }}
-                            <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
-                          </p>
-                    {% endfor %}
+        <div class="input-field col {{ classes.label }}">
+
+                {% if field|is_checkbox_select_multiple %}
+                    {% if field.auto_id %}
+                        <label class="control-label {{ classes.label }} {% if field.field.required %}{{ form.required_css_class }}{% endif %}">{{ field.label }}</label>
+                    {% endif %}
+                    <div class="{{ classes.value }}">
+                        {% for choice in field %}
+                              <p>
+                                {{ choice.tag }}
+                                <label for="{{ choice.id_for_label }}">{{ choice.choice_label }}</label>
+                              </p>
+                        {% endfor %}
+
+                        {% for error in field.errors %}
+                            <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
+                        {% endfor %}
+
+                        {% if field.help_text %}
+                        <p class="help-block">
+                            {{ field.help_text|safe }}
+                        </p>
+                        {% endif %}
+                    </div>
+
+                {% else %}
+
+
+                    <select id="{{ field.id }}" name="{{ field.name }}">
+                        {% for choice in field %}
+                            <option value="{{ choice.value }}">{{ choice.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label class="yohoooo" for="{{ field.id_for_label }}">{{ field.label }}</label>
+
 
                     {% for error in field.errors %}
                         <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
@@ -87,33 +111,10 @@
                         {{ field.help_text|safe }}
                     </p>
                     {% endif %}
-                </div>
 
-            {% else %}
+                    {% endif %}
 
-
-                <select id="{{ field.id }}" name="{{ field.name }}">
-                    {% for choice in field %}
-                        <option value="{{ choice.value }}">{{ choice.name }}</option>
-                    {% endfor %}
-                </select>
-
-                <label class="yohoooo" for="{{ field.id_for_label }}">{{ field.label }}</label>
-
-
-                {% for error in field.errors %}
-                    <span class="help-block {{ form.error_css_class }}">{{ error }}</span>
-                {% endfor %}
-
-                {% if field.help_text %}
-                <p class="help-block">
-                    {{ field.help_text|safe }}
-                </p>
-                {% endif %}
-
-                {% endif %}
-
-    </div>
+        </div>
 
     {% elif field|is_textarea %}
         <div class="input-field col {{ classes.label }}">
